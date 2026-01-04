@@ -1,7 +1,6 @@
 from action import Action, ActionType, ACTION_SPACE
 from observation import Observation
-import pyautogui
-import time
+import control.control_service as control
 
 class SilksongEnv:
     def __init__(self):
@@ -15,38 +14,19 @@ class SilksongEnv:
         }
     
     def _jump(self):
-        pyautogui.keyDown("z")
-        time.sleep(0.5)
-        pyautogui.keyUp("z")
-        pass
+        control.jump()
 
     def _jump_left(self):
-        pyautogui.keyDown("z")
-        pyautogui.keyDown("left")
-        time.sleep(0.5)
-        pyautogui.keyUp("z")
-        pyautogui.keyUp("left")
-        pass
+        control.jump_left()
 
     def _jump_right(self):
-        pyautogui.keyDown("z")
-        pyautogui.keyDown("right")
-        time.sleep(0.5)
-        pyautogui.keyUp("z")
-        pyautogui.keyUp("right")
-        pass
+        control.jump_right()
 
     def _move_left(self):
-        pyautogui.keyDown("left")
-        time.sleep(0.5)
-        pyautogui.keyUp("left")
-        pass
+        control.move_left()
 
     def _move_right(self):
-        pyautogui.keyDown("right")
-        time.sleep(0.5)
-        pyautogui.keyUp("right")
-        pass
+        control.move_right()
 
     def _no_op(self):
         pass
