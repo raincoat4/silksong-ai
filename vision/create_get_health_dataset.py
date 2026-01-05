@@ -6,7 +6,7 @@ import os
 from vision_service import get_health_window_coords
 
 # Ensure folder exists
-folder = "vision/training_data/get_health/"
+folder = "vision/training_data/get_health/photos"
 os.makedirs(folder, exist_ok=True)
 
 i = 12
