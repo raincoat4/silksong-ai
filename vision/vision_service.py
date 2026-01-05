@@ -14,10 +14,10 @@ def get_window_coords():
         layer = w.get("kCGWindowLayer", -1)
 
         if name and name == "Hollow Knight Silksong" and sharing != 0 and layer == 0:
-            top = int(bounds.get("Y", 0)) + 25 #remove top bar
+            top = int(bounds.get("Y", 0)) + 30 #remove top bar
             left = int(bounds.get("X", 0))
             width = int(bounds.get("Width", 0))
-            height = int(bounds.get("Height", 0)) - 25
+            height = int(bounds.get("Height", 0)) - 30
 
             if width > 0 and height > 0:
                 return {"top": top, "left": left, "width": width, "height": height}
@@ -34,6 +34,11 @@ def get_frame():
             cv2.imshow("OpenCV/Numpy normal", img)
             if cv2.waitKey(25) & 0xFF == ord("q"):
                 cv2.destroyAllWindows()
-    
 
-get_frame()
+def get_health_window_coords():
+    window = get_window_coords()
+    window["height"] -= 615
+    window["width"] -= 890
+    window["left"] += 100
+    window["top"] += 47
+    return window
