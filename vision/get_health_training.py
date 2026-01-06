@@ -43,3 +43,4 @@ for epoch in range(10):
 
     print(f"Epoch {epoch+1}: loss = {total_loss / len(train_loader):.4f}")
 
+torch.save(model.state_dict(), "health_cnn.pth")
