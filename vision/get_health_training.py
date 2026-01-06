@@ -13,7 +13,7 @@ dataset = MaskDataset(
 
 train_loader = DataLoader(
     dataset,
-    batch_size=32,
+    batch_size=3,
     shuffle=True
 )
 
@@ -42,15 +42,4 @@ for epoch in range(10):
         total_loss += loss.item()
 
     print(f"Epoch {epoch+1}: loss = {total_loss / len(train_loader):.4f}")
-
-
-model.eval()
-with torch.no_grad():
-    images, labels = next(iter(train_loader))
-    images = images.to(device)
-    preds = model(images)
-    predicted = preds.argmax(dim=1)
-
-print("GT labels:", labels)
-print("Predicted:", predicted.cpu())
 

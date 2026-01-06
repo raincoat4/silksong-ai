@@ -9,8 +9,7 @@ from vision_service import get_health_window_coords
 folder = "vision/training_data/get_health/photos"
 os.makedirs(folder, exist_ok=True)
 
-i = 12
-print("hi")
+i = 38
 with mss.mss() as sct:
     while True:
         time.sleep(5)
