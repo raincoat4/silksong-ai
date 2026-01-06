@@ -1,8 +1,8 @@
 from torch.utils.data import DataLoader
-from MaskDataset import MaskDataset   # your file name
+from vision.get_health.classes.MaskDataset import MaskDataset   # your file name
 import torch
 import torch.nn as nn
-from HealthCNN import HealthCNN
+from vision.get_health.classes.HealthCNN import HealthCNN
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 

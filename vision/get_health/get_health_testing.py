@@ -1,7 +1,7 @@
-from MaskDataset import MaskDataset
+from vision.get_health.classes.MaskDataset import MaskDataset
 import torch
 from torch.utils.data import DataLoader
-from HealthCNN import HealthCNN
+from vision.get_health.classes.HealthCNN import HealthCNN
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
