@@ -1,31 +1,31 @@
 from torch.utils.data import DataLoader
-from classes.MaskDataset import MaskDataset   # your file name
+from classes.PositionDataset import PositionDataset
 import torch
 import torch.nn as nn
-from classes.MaskCNN import MaskCNN
+from classes.PositionCNN import PositionCNN
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-dataset = MaskDataset(
-    csv_path="vision/get_health/training_data/get_health_data_labels.csv",
-    image_dir="vision/get_health/training_data/photos"
+dataset = PositionDataset(
+    csv_path="vision/get_position/training_data/get_position_data_labels.csv",
+    image_dir="vision/get_position/training_data/photos"
 )
 
 train_loader = DataLoader(
     dataset,
-    batch_size=3,
+    batch_size=8,
     shuffle=True
 )
 
 images, labels = next(iter(train_loader))
 print(images.shape, labels)
-
-model = MaskCNN().to(device)
+print(len(train_loader))
+model = PositionCNN().to(device)
 
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
-for epoch in range(10):
+for epoch in range(20):
     total_loss = 0
 
     for images, labels in train_loader:
@@ -43,4 +43,4 @@ for epoch in range(10):
 
     print(f"Epoch {epoch+1}: loss = {total_loss / len(train_loader):.4f}")
 
-torch.save(model.state_dict(), "health_cnn.pth")
+torch.save(model.state_dict(), "position_cnn.pth")

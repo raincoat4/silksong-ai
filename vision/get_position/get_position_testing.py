@@ -1,13 +1,13 @@
-from classes.MaskDataset import MaskDataset
+from classes.PositionDataset import PositionDataset
 import torch
 from torch.utils.data import DataLoader
-from classes.MaskCNN import MaskCNN
+from classes.PositionCNN import PositionCNN
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-dataset = MaskDataset(
-    csv_path="vision/get_health/testing_data/get_health_data_labels.csv",
-    image_dir="vision/get_health/testing_data/photos"
+dataset = PositionDataset(
+    csv_path="vision/get_position/training_data/get_position_data_labels.csv",
+    image_dir="vision/get_position/training_data/photos"
 )
 
 test_loader = DataLoader(
@@ -16,14 +16,14 @@ test_loader = DataLoader(
     shuffle=True
 )
 
-model = MaskCNN()  
-model.load_state_dict(torch.load("vision/models/health_cnn.pth"))
+model = PositionCNN()  
+model.load_state_dict(torch.load("vision/models/position_cnn.pth"))
 model.eval()
 with torch.no_grad():
     images, labels = next(iter(test_loader))
     images = images.to(device)
     preds = model(images)
     predicted = preds.argmax(dim=1)
-
+#print(preds)
 print("GT labels:", labels)
 print("Predicted:", predicted.cpu())

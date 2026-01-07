@@ -5,10 +5,10 @@ from Quartz import CGWindowListCopyWindowInfo, kCGNullWindowID, kCGWindowListOpt
 from PIL import Image
 from torchvision import transforms
 import torch
-from vision.get_health.classes.HealthCNN import HealthCNN
+from get_health.classes.MaskCNN import MaskCNN
 
 #helper
-def _get_window_coords():
+def get_window_coords():
     windows = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID)
 
     for w in windows:
@@ -28,19 +28,19 @@ def _get_window_coords():
 
     return None
 
-def _get_frame():
+def get_frame():
     if id is None:
         raise ValueError(f"Window not found")
     with mss.mss() as sct:
         while True:
-            window = _get_window_coords()
+            window = get_window_coords()
             img = np.array(sct.grab(window))
             cv2.imshow("OpenCV/Numpy normal", img)
             if cv2.waitKey(25) & 0xFF == ord("q"):
                 cv2.destroyAllWindows()
 
 def _get_health_window_coords():
-    window = _get_window_coords()
+    window = get_window_coords()
     window["height"] -= 615
     window["width"] -= 890
     window["left"] += 100
@@ -61,7 +61,7 @@ def get_health():
         image = to_tensor(img).unsqueeze(0).float()  #adds batch size to tensor
 
         #load and pass through model
-        model = HealthCNN()  
+        model = MaskCNN()  
         model.load_state_dict(torch.load("vision/models/health_cnn.pth"))
         model.eval()
         with torch.no_grad():
