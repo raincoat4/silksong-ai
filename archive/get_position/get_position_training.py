@@ -1,8 +1,8 @@
 from torch.utils.data import DataLoader
-from classes.PositionDataset import PositionDataset
+from archive.get_position.classes.PositionDataset import PositionDataset
 import torch
 import torch.nn as nn
-from classes.PositionCNN import PositionCNN
+from archive.get_position.classes.PositionCNN import PositionCNN
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 

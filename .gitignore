@@ -145,3 +145,9 @@ venv/
 # Python cache
 __pycache__/
 *.py[cod]
+
+# */*/testing_data
+# */*/training_data
+# vision/*/testing_data
+# vision/*/training_data
+*/*/*data
