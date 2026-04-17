@@ -5,7 +5,7 @@ from Quartz import CGWindowListCopyWindowInfo, kCGNullWindowID, kCGWindowListOpt
 from PIL import Image
 from torchvision import transforms
 import torch
-from get_health.classes.MaskCNN import MaskCNN
+from vision.CNNs.maskCNN.MaskCNN import MaskCNN
 
 #helper
 def get_window_coords():
