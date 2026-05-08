@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 import time
 import os
-from vision_service import get_health_window_coords
+from vision.vision_service.vision_service import get_health_window_coords
 
 # Ensure folder exists
 folder = "vision/training_data/get_health/photos"

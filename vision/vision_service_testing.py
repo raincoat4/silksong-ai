@@ -1,4 +1,4 @@
-from vision_service import get_health
+from vision.vision_service.vision_service import get_health
 import time
 
 while "screenshotting":

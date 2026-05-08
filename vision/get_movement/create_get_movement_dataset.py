@@ -8,7 +8,7 @@ from vision.vision_service.vision_service import get_window_coords
 
 # Ensure folder exists
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-folder = os.path.join(BASE_DIR, "training_data", "photos")
+folder = os.path.join(BASE_DIR, "testing_data", "photos")
 os.makedirs(folder, exist_ok=True)
 files = os.listdir(folder)
 indices = []
