@@ -6,6 +6,7 @@ from PIL import Image
 from torchvision import transforms
 import torch
 from vision.CNNs.maskCNN.MaskCNN import MaskCNN
+from vision.CNNs.movementCNN.MovementCNN import MovementCNN
 
 #helper
 def get_window_coords():
@@ -70,4 +71,22 @@ def get_health():
             health = torch.argmax(probs, dim=1).item()
         return health
 
+def get_movement():
+    with mss.mss() as sct:
+        window = get_window_coords()
+        screenshot = np.array(sct.grab(window))
+        img= cv2.cvtColor(screenshot, cv2.COLOR_BGRA2BGR)
+        img = Image.fromarray(img)
 
+        img = img.convert("RGB")
+        to_tensor = transforms.ToTensor()
+        image = to_tensor(img).unsqueeze(0).float()  #adds batch size to tensor
+
+        model = MovementCNN()
+        model.load_state_dict(torch.load("vision/models/movement_cnn.pth"))
+        model.eval()
+        with torch.no_grad():
+            output = model(image)
+            probs = torch.softmax(output, dim=1)
+            movement = torch.argmax(probs, dim=1).item()
+        return movement

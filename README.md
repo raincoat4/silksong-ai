@@ -24,3 +24,9 @@ apr 28:
 photos sort of working, need to edit window coords a bit
 also for movement, just moving right, moving left, jumping, falling for now.
 basic inputs to agent are movement and hp, do i need taking damage? maybe not for now
+
+May 8:
+get movement finished but not really working well, will revist when structure is more established. Might want to establish ground truth sprites of hornet since she has a generally consistent sprite for movement.
+
+May 11:
+get_movement function added, run through of retrieving values completed, health works well, movement doe snot but has potential

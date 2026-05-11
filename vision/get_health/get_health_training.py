@@ -7,7 +7,7 @@ from vision.CNNs.maskCNN.MaskCNN import MaskCNN
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 dataset = MaskDataset(
-    csv_path="vision/get_health/training_data/get_health_data_labels.csv",
+    csv_path="vision/get_health/training_data/labels.csv",
     image_dir="vision/get_health/training_data/photos"
 )
 
@@ -43,4 +43,4 @@ for epoch in range(10):
 
     print(f"Epoch {epoch+1}: loss = {total_loss / len(train_loader):.4f}")
 
-torch.save(model.state_dict(), "health_cnn.pth")
+torch.save(model.state_dict(), "vision/models/health_cnn.pth")
